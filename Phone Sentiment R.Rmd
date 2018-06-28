@@ -1,0 +1,54 @@
+---
+title: "Phone Sentiment"
+author: "Charlene Warnock"
+date: "6/27/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+# Required
+library(doParallel)
+
+# Find how many cores are on your machine
+detectCores() # Result = Typically 4 to 6
+
+# Create Cluster with desired number of cores. Don't use them all! Your computer is running other processes. 
+cl <- makeCluster(2)
+
+# Register Cluster
+registerDoParallel(cl)
+
+# Confirm how many cores are now "assigned" to R and RStudio
+getDoParWorkers() # Result 2 
+
+# Stop Cluster. After performing your tasks, stop your cluster. 
+stopCluster(cl)
+
+#view data
+library(readr)
+library(plotly)
+library(ggplot2)
+iphonedata <- read_csv("~/Documents/Course 4 Task 3/C4T3/iphone_smallmatrix_labeled_8d.csv")
+View(iphonedata)
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
